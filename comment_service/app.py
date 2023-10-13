@@ -36,7 +36,6 @@ def get_post(post_id: int = Depends(get_post_from_post_service)):
     return post_id
 
 
-
 @app.post("/comments/", response_model=Comment)
 def create_comment(comment: Comment, user: int = Depends(get_user), post: int = Depends(get_post)):
     comment_id = len(comments_db) + 1
