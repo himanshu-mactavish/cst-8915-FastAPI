@@ -13,15 +13,8 @@ class Comment(BaseModel):
 
 comments_db: Dict[int, Comment] = {}
 
-user_service_url = "http://localhost:8001"  # Replace with the User service URL
-post_service_url = "http://localhost:8002"  # Replace with the Post service URL
-
-# Dependencies to get the User and Post using the user and post services
-def get_user(user_id: int = Depends(get_user_from_user_service)):
-    return user_id
-
-def get_post(post_id: int = Depends(get_post_from_post_service)):
-    return post_id
+user_service_url = "http://localhost:8001"  
+post_service_url = "http://localhost:8002"
 
 def get_user_from_user_service(user_id: int):
     user_response = requests.get(f"{user_service_url}/users/{user_id}")
@@ -34,6 +27,15 @@ def get_post_from_post_service(post_id: int):
     if post_response.status_code != 200:
         raise HTTPException(status_code=404, detail="Post not found")
     return post_id
+
+# Dependencies to get the User and Post using the user and post services
+def get_user(user_id: int = Depends(get_user_from_user_service)):
+    return user_id
+
+def get_post(post_id: int = Depends(get_post_from_post_service)):
+    return post_id
+
+
 
 @app.post("/comments/", response_model=Comment)
 def create_comment(comment: Comment, user: int = Depends(get_user), post: int = Depends(get_post)):
