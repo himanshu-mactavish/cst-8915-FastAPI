@@ -2,14 +2,14 @@ version: "3"
 services:
   user-service:
     build:
-      context: .
+      context: user_service
       dockerfile: user_service/Dockerfile
     ports:
       - "8001:8001"
 
   post-service:
     build:
-      context: .
+      context: post_service
       dockerfile: post_service/Dockerfile
     ports:
       - "8002:8002"
@@ -18,7 +18,7 @@ services:
 
   comment-service:
     build:
-      context: .
+      context: comment_service
       dockerfile: comment_service/Dockerfile
     ports:
       - "8003:8003"
