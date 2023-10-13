@@ -5,13 +5,13 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Copy the service code into the container
-COPY user_service.py /app/user_service.py
+COPY comment_service.py /app/comment_service.py
 
-# Install FastAPI and Uvicorn
-RUN pip install fastapi uvicorn
+# Install FastAPI, Uvicorn, and requests library
+RUN pip install fastapi uvicorn requests
 
 # Expose the port on which the service will run
-EXPOSE 8001
+EXPOSE 8003
 
 # Command to run the service
-CMD ["uvicorn", "user_service:app", "--host", "0.0.0.0", "--port", "8001"]
+CMD ["uvicorn", "comment_service:app", "--host", "0.0.0.0", "--port", "8003"]

@@ -1,1 +1,6 @@
 user_service/venv
+post_service/venv
+comment_service/venv
+user_service/__pycache__
+post_service/__pycache__
+comment_service/__pycache__
