@@ -9,7 +9,9 @@ class User(BaseModel):
     username: str
     email: str
 
-users_db: Dict[int, User] = {}
+users_db: Dict[int, User] = {
+    1:{"mac":"mac@localhost.com"}
+}
 
 @app.post("/users/", response_model=User)
 def create_user(user: User):

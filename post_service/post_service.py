@@ -13,7 +13,7 @@ class Post(BaseModel):
 
 posts_db: Dict[int, Post] = {}
 
-user_service_url = "http://localhost:5000"  # Replace with the User service URL
+user_service_url = "http://localhost:8001"  # Replace with the User service URL
 
 @app.post("/posts/", response_model=Post)
 def create_post(post: Post):
